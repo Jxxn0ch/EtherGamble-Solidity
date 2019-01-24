@@ -3,12 +3,9 @@ pragma solidity ^0.4.25;
 /**
  * @title ERC721 Non-Fungible Token Standard basic interface
  * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md
- *
- * @dev 대체 불가능한 (Non-Fungible) 토큰 규약 ERC721 에 따른 인터페이스 선언
  */
 contract ERC721Basic {
 
-  // Transfer, Approval, ApprovalForAll 이벤트
   event Transfer(
     address indexed _from,
     address indexed _to,
@@ -38,18 +35,14 @@ contract ERC721Basic {
 
   function setApprovalForAll(address _operator, bool _approved) public;
 
-  // _owner 의 모든 토큰에 대한 접근 권한이 _operator 에게 있는지를 체크
   function isApprovedForAll(address _owner, address _operator)
     public view returns (bool);
 
- // 본인의 혹은 접근 가능한 _tokenId 토큰을 _from 에서 _to 로 넘김
   function transferFrom(address _from, address _to, uint256 _tokenId) public;
 
-  // _to 가 콘트랙트 주소인 경우에는 ERC721Receiver 의 onERC721Received 함수가 존재하는지를 체크한 후에 토큰을 넘김.
   function safeTransferFrom(address _from, address _to, uint256 _tokenId)
     public;
 
-  // 위와 같은 함수에 옵셔널하게 체크 가능한 _data 가 첨부됨. (function overloading)
   function safeTransferFrom(
     address _from,
     address _to,
